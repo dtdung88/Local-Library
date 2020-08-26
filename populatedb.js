@@ -222,5 +222,5 @@ function(err, results) {
         
     }
     // All done, disconnect from database
-    mongoose.connection.close();
+    db.close();
 });
