@@ -1,8 +1,8 @@
-var Genre = require('../models/genre');
-var Book = require('../models/book');
-var async = require('async');
+const Genre = require('../models/genre');
+const Book = require('../models/book');
+const async = require('async');
 
-var validator = require('express-validator');
+const validator = require('express-validator');
 
 // Display list of all Genre.
 exports.genre_list = function(req, res, next) {
@@ -26,7 +26,7 @@ exports.genre_detail = function(req, res, next) {
     }, function(err, results) {
         if (err) { return next(err); }
         if (results.genre==null) { // No results.
-            var err = new Error('Genre not found');
+            const err = new Error('Genre not found');
             err.status = 404;
             return next(err);
         }
@@ -59,7 +59,7 @@ exports.genre_create_post = [
         const errors = validator.validationResult(req);
 
         // Create a genre object with escaped and trimmed data.
-        var genre = new Genre({ name: req.body.name });
+        const genre = new Genre({ name: req.body.name });
 
         if (!errors.isEmpty()) {
             // There are errors. Render the form again with sanitized values/error messages.
@@ -149,7 +149,7 @@ exports.genre_update_get = function(req, res, next) {
         if (err) { return next(err); }
 
         if (genre == null) { // No result.
-            var err = new Error('Genre not found');
+            const err = new Error('Genre not found');
             err.status = 404;
             return next(err);
         }
@@ -172,7 +172,7 @@ exports.genre_update_post = [
         const errors = validator.validationResult(req);
 
         // Create a genre object with escaped and trimmed data.
-        var genre = new Genre({
+        const genre = new Genre({
             name: req.body.name,
             _id: req.params.id
         });

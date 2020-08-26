@@ -1,11 +1,11 @@
-var Book = require('../models/book');
-var Author = require('../models/author');
-var Genre = require('../models/genre');
-var BookInstance = require('../models/bookinstance');
+const Book = require('../models/book');
+const Author = require('../models/author');
+const Genre = require('../models/genre');
+const BookInstance = require('../models/bookinstance');
 
 const validator = require('express-validator');
 
-var async = require('async');
+const async = require('async');
 
 exports.index = function(req, res, next) {
     async.parallel({
@@ -51,7 +51,7 @@ exports.book_detail = function(req, res, next) {
     }, function(err, results) {
         if (err) { return next(err); }
         if (results.book==null) { // No results
-            var err = new Error('Book not found');
+            const err = new Error('Book not found');
             err.status = 404;
             return next(err);
         }
@@ -111,7 +111,7 @@ exports.book_create_post = [
         const errors = validator.validationResult(req);  
 
         // Create a Book object with escaped and trimmed data.
-        var _book = new Book({
+        const _book = new Book({
             title: req.body.title,
             author: req.body.author,
             summary: req.body.summary,
@@ -227,7 +227,7 @@ exports.book_update_get = function(req, res, next) {
         if (err) { return next(err); }
 
         if (results.book == null) { // No results.
-            var err = new Error('Book not found');
+            const err = new Error('Book not found');
             err.status = 404;
             return next(err);
         }
@@ -237,8 +237,8 @@ exports.book_update_get = function(req, res, next) {
 
 
         // Need optimized
-        for (var all_g_iter = 0; all_g_iter < results.genres.length; all_g_iter++) {
-            for (var book_g_iter = 0; book_g_iter < results.book.genre.length; book_g_iter++) {
+        for (const all_g_iter = 0; all_g_iter < results.genres.length; all_g_iter++) {
+            for (const book_g_iter = 0; book_g_iter < results.book.genre.length; book_g_iter++) {
                 if (results.genres[all_g_iter]._id.toString() == results.book.genre[book_g_iter]._id.toString()) {
                     results.genres[all_g_iter].checked = 'true';
                 }
@@ -286,7 +286,7 @@ exports.book_update_post = [
         const errors = validator.validationResult(req);
 
         // Create a Book object with escaped/trimmed data and old id.
-        var _book = new Book({
+        const _book = new Book({
             title: req.body.title,
             author: req.body.author,
             summary: req.body.summary,
