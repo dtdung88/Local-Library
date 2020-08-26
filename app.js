@@ -20,7 +20,7 @@ app.use(helmet());
 // Set up mongoose connection
 const mongoose = require('mongoose');
 
-const dev_db_url = 'mongodb+srv://dtdung88:aptx4869@local-library-njnjo.mongodb.net/test?retryWrites=true&w=majority';
+const dev_db_url = 'mongodb+srv://<account>:<password>@local-library-njnjo.mongodb.net/test?retryWrites=true&w=majority';
 const mongoDB_URL = process.env.MONGODB_URI || dev_db_url;
 
 mongoose.connect(mongoDB_URL, { useNewUrlParser: true });
